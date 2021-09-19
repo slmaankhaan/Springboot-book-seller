@@ -13,6 +13,11 @@ import java.io.IOException;
 
 public class JwtAuthorizationFilter extends OncePerRequestFilter {
 
+    @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
+        return request.getRequestURI().startsWith("/api/internal");
+    }
+
     @Autowired
     private  IJwtProvider jwtProvider;
 
